@@ -1,7 +1,6 @@
 class FileUploadsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_file_upload, only: [:show, :destroy, :share]
-
+    before_action :set_file_upload, only: [:show, :destroy]
   
     def index
       @file_uploads = current_user.file_uploads
@@ -12,7 +11,7 @@ class FileUploadsController < ApplicationController
     end
     def show
         @file_upload = FileUpload.find(params[:id])
-      end
+    end
       
     def create
       @file_upload = current_user.file_uploads.build(file_upload_params)
@@ -31,7 +30,9 @@ class FileUploadsController < ApplicationController
     end
   
     def destroy
+        Rails.logger.debug "Destroy action triggered for FileUpload ID: #{params[:id]}"
         @file_upload = current_user.file_uploads.find_by(id: params[:id])
+      
         if @file_upload
           @file_upload.destroy
           flash[:notice] = "File deleted successfully."
@@ -41,22 +42,14 @@ class FileUploadsController < ApplicationController
         redirect_to file_uploads_path
     end
   
-    def share
-      render plain: "Publicly shared URL: #{request.base_url}/f/#{@file_upload.short_url}"
-    end
-  
-    def public_view
-      @file_upload = FileUpload.find_by!(short_url: params[:short_url])
-      send_data @file_upload.file.download, filename: @file_upload.file.filename.to_s
-    end
-
-    def download
+      def download
         file_upload = FileUpload.find(params[:id])
         if file_upload.present?
             flash[:notice] = "File downloaded successfully!"
             redirect_to rails_blob_path(file_upload.file, disposition: "attachment")
         end
     end
+
     private
   
     def set_file_upload

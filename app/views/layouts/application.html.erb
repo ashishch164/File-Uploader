@@ -18,6 +18,15 @@
       <%= flash[:alert] %>
     </div>
   <% end %>
+
+  <nav>
+  <%= link_to "Home", root_path, class: "btn btn-primary" %>
+  <% if user_signed_in? %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to logout?" } %>
+  <% else %>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
+  <% end %>
+</nav>
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 

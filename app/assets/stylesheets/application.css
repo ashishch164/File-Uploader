@@ -64,6 +64,9 @@ body {
     color: #fff;
     border: none;
   }
+  .btn-danger {
+    background-color: #dc3545;
+  }
   
  
   .alert {
@@ -83,4 +86,18 @@ body {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+  }
+  
+  nav .btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
   }
