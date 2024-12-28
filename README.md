@@ -1,6 +1,7 @@
 <p>This is a file upload platform where users can upload, view, and delete files. The platform supports handling large files up to 1GB and only accepts JPEG or PNG file formats.</p>
 
-Authentication: Uses Devise for user sign-up, login, and logout.
+Authentication: Used Devise for user sign-up, login, and logout.
+Route is: http://127.0.0.1:3000/users/sign_in (after setting up the rails server)
 <br>
 Users can:
 1. Upload Files with title, description, and attachment(jpg/png).
