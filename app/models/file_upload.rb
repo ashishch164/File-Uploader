@@ -21,9 +21,9 @@ class FileUpload < ApplicationRecord
   def file_size_validation
     return unless file.attached?
 
-    max_size_in_mb = 100 # Limit to 100MB
-    if file.byte_size > max_size_in_mb.megabytes
-      errors.add(:file, "size cannot exceed #{max_size_in_mb}MB")
+    max_size_in_gb = 1 # Limit to 1GB
+    if file.byte_size > max_size_in_gb.gigabytes
+      errors.add(:file, "size cannot exceed #{max_size_in_gb}GB")
     end
   end
 end
