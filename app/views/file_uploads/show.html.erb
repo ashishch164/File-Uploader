@@ -1,0 +1,11 @@
+<h1>File Details</h1>
+
+<p><strong>Title:</strong> <%= @file_upload.title %></p>
+<p><strong>Description:</strong> <%= @file_upload.description %></p>
+<p><strong>Uploaded At:</strong> <%= @file_upload.created_at.strftime("%B %d, %Y %H:%M") %></p>
+<p><strong>File Type:</strong> <%= @file_upload.file.content_type %></p>
+<p><strong>File Size:</strong> <%= number_to_human_size(@file_upload.file.byte_size) %></p>
+
+<%= link_to 'Download File', rails_blob_path(@file_upload.file, disposition: 'attachment'), class: 'btn btn-primary' %>
+<%= link_to 'Back to All Files', file_uploads_path, class: 'btn btn-secondary' %>
+<%= link_to 'Delete File', file_upload_path(@file_upload), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
